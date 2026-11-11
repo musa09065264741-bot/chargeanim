@@ -36,4 +36,9 @@ public class ChargeActivity extends Activity {
         handler.postDelayed(this::finish, 10000);
     }
 
-    @Overrid
+    @Override protected void onDestroy() {
+        handler.removeCallbacksAndMessages(null);
+        try { unregisterReceiver(unplug); } catch (Exception ignored) { }
+        super.onDestroy();
+    }
+    }
